@@ -1,0 +1,16 @@
+html{
+  width: 100vw;
+  height: 100vh;
+}
+
+body{
+  box-sizing: border-box;
+ /* width: 100vw;
+  height: 100vh;*/
+  width: 100%;
+}
+
+#root{
+  width: 100vw;
+  height: 100vh;
+}
