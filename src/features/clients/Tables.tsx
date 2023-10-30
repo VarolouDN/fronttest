@@ -9,9 +9,11 @@ import Loader from "../ui/Loader";
 
 
 
-export default function Tables() {
+export default function Tables({currentClients}) {
 
-const dispatch=useDispatch()
+    const {isLoading}:Clients=useSelector(function(state:State):Clients{
+        return state.clients})
+/*const dispatch=useDispatch()
 
     const {clients,isLoading}:Clients=useSelector(function(state:State):Clients{
         return state.clients})
@@ -24,11 +26,11 @@ useEffect(()=>{
 
 
    console.log(clients)
-    console.log(isLoading)
+    console.log(isLoading)*/
    
     return (
         <div>
-          { isLoading ?<Loader/> :  clients.map((client:Client)=><Table key={client._id} {...client} />)}
+          { isLoading ?<Loader/> :  currentClients.map((client:Client)=><Table key={client._id} {...client} />)}
         </div>
     )
 }

@@ -6,6 +6,7 @@ import Login from "./features/auth/Login";
 import AppLayout from "./features/ui/AppLayout";
 import Error from "./features/ui/Error";
 import Tables from "./features/clients/Tables";
+import PaginatedItems from "./features/clients/PaginatedItems";
 
 
 const router=createBrowserRouter([
@@ -24,7 +25,7 @@ const router=createBrowserRouter([
 
     {
         path: '/table',
-        element: <Tables/>,
+        element: <PaginatedItems/>,
         errorElement: <Error/>
         
     }
