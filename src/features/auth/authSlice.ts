@@ -7,8 +7,8 @@ const initialState: Auth = {
   isAuth: false,
   authError: "",
 };
-
-const host = "http://localhost:5000";
+const host="https://backtest-steel.vercel.app"
+//const host = "http://localhost:5000";
 
 const authSlice = createSlice({
   name: "auth",
