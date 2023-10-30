@@ -15,8 +15,8 @@ import {memo, useState} from "react";
    let [typeName,setTypeName]=useState(client.name);
    let [typeEmail,setTypeEmail]=useState(client.email);
   let [typePhone,setTypePhone]=useState(client.phone);
-  const activeId=useSelector(state=>state.clients.activeId)
-     const isAuth=useSelector(state=>state.auth.isAuth)
+  const activeId:string | false=useSelector(state=>state.clients.activeId)
+     const isAuth:boolean=useSelector(state=>state.auth.isAuth)
     console.log(client)
     /* name="Victor",
      email='1234@ukr.net'

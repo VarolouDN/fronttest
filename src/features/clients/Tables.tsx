@@ -1,18 +1,19 @@
 
-import {useEffect, useState} from "react";
-import Table from "./Table";
-import {getClients, isLoading} from "./clientsSlice";
 
-import { useDispatch, useSelector } from "react-redux";
+import Table from "./Table";
+
+
+import { useSelector } from "react-redux";
 import {State, Client, Clients} from "../../types";
 import Loader from "../ui/Loader";
 
 
 
-export default function Tables({currentClients}) {
+export default function Tables({currentClients}:any) {
 
-    const {isLoading}:Clients=useSelector(function(state:State):Clients{
+    const {isLoading}:any=useSelector(function(state:State):Clients{
         return state.clients})
+        console.log(isLoading)
 /*const dispatch=useDispatch()
 
     const {clients,isLoading}:Clients=useSelector(function(state:State):Clients{

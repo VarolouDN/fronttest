@@ -2,16 +2,11 @@ import { createSlice } from "@reduxjs/toolkit";
 import { Client } from "../../types";
 
 const initialState = {
-  clients:[],
-  isLoading:false,
-  activeId:null
-
-
-
-
-
+  clients: [],
+  isLoading: false,
+  activeId: null,
 };
-const host="https://backtest-steel.vercel.app"
+const host = "https://backtest-omega.vercel.app";
 //const host = "http://localhost:5000";
 
 const clientsSlice = createSlice({
@@ -20,52 +15,45 @@ const clientsSlice = createSlice({
   reducers: {
     getClients(state, action) {
       state.clients = action.payload;
-
     },
     updateClient: {
-      prepare(_id, name, email, phone) {
+      prepare(_id, name, email, phone): Client {
         return {
-          payload: {_id, name, email, phone}
-        }
+          payload: { _id, name, email, phone },
+        };
       },
-      reducer(state, action) {
-
-        state.clients = state.clients.map(function (elem) {
-            console.log(action.payload)
-              if (action.payload._id === elem._id) {
-                console.log(action.payload._id === elem._id)
-                return ({
-                  _id: action.payload._id,
-                  id: action.payload.id,
-                  name: action.payload.name,
-                  email: action.payload.email,
-                  phone: action.payload.phone
-
-
-                })
-              } else{
-             //   console.log(elem)
-                return elem
-              }
-            }
-        )
-
-      }
+      reducer(state, action): any {
+        state.clients = state.clients.map(function (elem: Client) {
+          console.log(action.payload);
+          if (action.payload._id === elem._id) {
+            console.log(action.payload._id === elem._id);
+            return {
+              _id: action.payload._id,
+              id: action.payload.id,
+              name: action.payload.name,
+              email: action.payload.email,
+              phone: action.payload.phone,
+            };
+          } else {
+            //   console.log(elem)
+            return elem;
+          }
+        });
+      },
     },
 
-    isLoading(state,action){
-      state.isLoading=action.payload
+    isLoading(state, action) {
+      state.isLoading = action.payload;
     },
-    activeId(state,action){
-      state.activeId=action.payload
-    }
-
+    activeId(state, action) {
+      state.activeId = action.payload;
+    },
   },
 });
 
 export function getClients() {
   return function (dispatch: any) {
-      dispatch({type:'clients/isLoading',payload:true})
+    dispatch({ type: "clients/isLoading", payload: true });
     fetch(`${host}/api/clients`)
       .then((resp) => resp.json())
       .then((data) => {
@@ -77,37 +65,44 @@ export function getClients() {
         console.log(error);
 
         alert(error.message);
-      }).finally(()=>{
-        dispatch({type:'clients/isLoading',payload:false})
-    })
+      })
+      .finally(() => {
+        dispatch({ type: "clients/isLoading", payload: false });
+      });
   };
 }
-export function updateClient(id,name,email,phone) {
-  console.log(id,name,email,phone)
+export function updateClient(
+  id: string,
+  name: string,
+  email: string,
+  phone: string
+) {
+  console.log(id, name, email, phone);
   return function (dispatch: any) {
-    dispatch({type:'clients/isLoading',payload:true})
-    fetch(`${host}/api/clients/${id}`,{
-      method:'put',
-      body:JSON.stringify({name,email,phone}),
+    dispatch({ type: "clients/isLoading", payload: true });
+    fetch(`${host}/api/clients/${id}`, {
+      method: "put",
+      body: JSON.stringify({ name, email, phone }),
       headers: {
-        "content-type": "application/json"
-      }
+        "content-type": "application/json",
+      },
     })
-        .then((resp) => resp.json())
-        .then((data) => {
-          console.log(data.client);
+      .then((resp) => resp.json())
+      .then((data) => {
+        console.log(data.client);
 
-          dispatch({ type: "clients/updateClient", payload:data.client});
-        })
-        .catch((error) => {
-          console.log(error);
+        dispatch({ type: "clients/updateClient", payload: data.client });
+      })
+      .catch((error) => {
+        console.log(error);
 
-          alert(error.message);
-        }).finally(()=>{
-      dispatch({type:'clients/isLoading',payload:false})
-    })
+        alert(error.message);
+      })
+      .finally(() => {
+        dispatch({ type: "clients/isLoading", payload: false });
+      });
   };
 }
-export const {isLoading,activeId} = clientsSlice.actions;
+export const { isLoading, activeId } = clientsSlice.actions;
 
 export default clientsSlice.reducer;
