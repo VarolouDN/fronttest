@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { Client, ClientsState, State } from "../../types";
+import { Client, ClientsState } from "../../types";
 import { Dispatch } from "redux";
 import { AnyAction } from "@reduxjs/toolkit";
 

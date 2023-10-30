@@ -1,8 +1,8 @@
 import { ActiveId, Client, IsAuth, State } from '../../types'
 import styles from './Table.module.css'
-import {activeId, updateClient} from "./clientsSlice";
+import { updateClient} from "./clientsSlice";
 import {useDispatch, useSelector} from "react-redux";
-import {ReactHTMLElement, memo, useState} from "react";
+import { memo, useState} from "react";
 
 
 

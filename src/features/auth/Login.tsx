@@ -17,16 +17,16 @@ export default function Login(){
 
     const[userName,setUserName]=useState('')
     const [validName,setValidName]=useState(false)
-    const [userFocus,setUserFocus]=useState(false)
+    const [,setUserFocus]=useState(false)
 
 
 
     const[password,setPassword]=useState('');
     const[validPassword,setValidPassword]=useState(false);
-    const [passwordFocus,setPasswordFocus]=useState(false);
+    const [,setPasswordFocus]=useState(false);
 
 
-    const[errorMessage,setErrorMessage]=useState('');
+    const[,setErrorMessage]=useState('');
 
 
     const dispatch=useDispatch()
