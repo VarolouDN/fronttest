@@ -17,12 +17,19 @@ export default  function PaginatedItems() {
 
     const {clients}:ClientsState=useSelector(function(state:State):ClientsState{
         return state.clients})
-    useEffect(()=>{
-
+   /* useEffect(()=>{
+         console.log('hello')
         dispatch(getClients())
 
 
-    },[clients.length])
+    },[clients.length])*/
+
+    useEffect(()=>{
+         console.log('hello')
+        dispatch(getClients())
+
+
+    },[])
     // Here we use item offsets; we could also use page offsets
     // following the API or data you're working with.
     // Get current posts
