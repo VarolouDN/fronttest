@@ -1,6 +1,6 @@
 import {useNavigation,Outlet} from 'react-router-dom'
 import Loader from "./Loader";
-import {useEffect} from "react";
+
 import styles from "./AppLayout.module.css"
 
 

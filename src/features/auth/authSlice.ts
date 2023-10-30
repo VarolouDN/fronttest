@@ -1,5 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { Auth } from "../../types";
+import { Dispatch } from "redux";
+import { AnyAction } from "@reduxjs/toolkit";
 
 const initialState: Auth = {
   userName: "",
@@ -33,8 +35,12 @@ const authSlice = createSlice({
   },
 });
 
-export function login(userName: string, password: string, navigate: any) {
-  return function (dispatch: any) {
+export function login(
+  userName: string,
+  password: string,
+  navigate: (path: string) => void
+): any {
+  return function (dispatch: Dispatch<AnyAction>) {
     fetch(`${host}/api/auth/login`, {
       method: "post",
       body: JSON.stringify({ username: userName, password: password }),

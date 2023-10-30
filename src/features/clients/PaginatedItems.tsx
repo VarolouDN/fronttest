@@ -1,8 +1,8 @@
 import  { useEffect, useState } from 'react';
 
-import ReactPaginate from 'react-paginate';
+
 import Tables from "./Tables";
-import {Clients, State} from "../../types";
+import { ClientsState, State} from "../../types";
 import {getClients} from "./clientsSlice";
 import {useDispatch, useSelector} from "react-redux";
 import Pagination from "./Pagination";
@@ -15,7 +15,7 @@ export default  function PaginatedItems() {
 
     const dispatch=useDispatch()
 
-    const {clients/*,isLoading*/}:Clients=useSelector(function(state:State):Clients{
+    const {clients}:ClientsState=useSelector(function(state:State):ClientsState{
         return state.clients})
     useEffect(()=>{
 
@@ -31,7 +31,7 @@ export default  function PaginatedItems() {
     const currentClients = clients.slice(indexOfFirstClient, indexOfLastClient);
 console.log(currentClients)
     // Change page
-    const paginate = pageNumber => setCurrentPage(pageNumber);
+    const paginate = (pageNumber:number):void => setCurrentPage(pageNumber);
 
     return (
         <div className='container mt-5'>
@@ -41,7 +41,7 @@ console.log(currentClients)
                 clientsPerPage={clientsPerPage}
                 totalClients={clients.length}
                 paginate={paginate}
-                currentPage={currentPage}
+                
             />
         </div>
     );

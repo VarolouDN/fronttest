@@ -1,6 +1,12 @@
-import {Link} from "react-router-dom";
 
-function Pagination ({ clientsPerPage, totalClients, paginate,currentPage })  {
+
+type PaginationProps={
+    clientsPerPage:number,
+    totalClients:number,
+    paginate:(number:number)=>void
+}
+
+function Pagination ({ clientsPerPage, totalClients, paginate}:PaginationProps)  {
     const pageNumbers = [];
 
     for (let i = 1; i <= Math.ceil(totalClients / clientsPerPage); i++) {

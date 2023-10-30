@@ -7,6 +7,8 @@ import {useNavigate} from 'react-router-dom'
 
 
 
+
+
 const USER_REGEX = /^[A-z][A-z0-9-_]{6,14}$/;
 const PASSWORD_REGEX = /^[A-z][A-z0-9-_]{6,14}$/;
 
@@ -19,12 +21,12 @@ export default function Login(){
 
 
 
-    const[password,setPassword]=useState('')
-    const[validPassword,setValidPassword]=useState(false)
-    const [passwordFocus,setPasswordFocus]=useState(false)
+    const[password,setPassword]=useState('');
+    const[validPassword,setValidPassword]=useState(false);
+    const [passwordFocus,setPasswordFocus]=useState(false);
 
 
-    const[errorMessage,setErrorMessage]=useState('')
+    const[errorMessage,setErrorMessage]=useState('');
 
 
     const dispatch=useDispatch()
@@ -50,7 +52,7 @@ export default function Login(){
         setValidPassword(result)
     },[password])
 
-    function handleSubmit(e){
+    function handleSubmit(e:React.FormEvent<HTMLFormElement> ){
         e.preventDefault()
         const v1 = USER_REGEX.test(userName);
         const v2 = PASSWORD_REGEX.test(password);

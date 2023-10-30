@@ -12,17 +12,22 @@ export type Clients = Client[];
 export type Auth = {
   userName: string;
   password: string;
-  isAuth: boolean;
+  isAuth: IsAuth;
   authError: string;
 };
 
-type ClientsState = {
-  clients: Client[];
-  isLoading: boolean;
-  activeId: string | null;
+export type ClientsState = {
+  clients: Client[] | [];
+  isLoading: IsLoading;
+  activeId: ActiveId;
 };
 
 export type State = {
   auth: Auth;
   clients: ClientsState;
 };
+export type ActiveId = string | null;
+
+export type IsLoading = boolean;
+
+export type IsAuth = boolean;

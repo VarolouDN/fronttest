@@ -1,11 +1,11 @@
 
-import {useNavigate,useRouteError} from 'react-router-dom'
+import {ErrorResponse, useNavigate,useRouteError} from 'react-router-dom'
 
 
 export default function Error() {
 
     const navigate = useNavigate();
-    const error=useRouteError()
+    const error=useRouteError() as ErrorResponse | any
     console.log(error)
     return (
         <div>

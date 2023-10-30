@@ -4,14 +4,14 @@ import Table from "./Table";
 
 
 import { useSelector } from "react-redux";
-import {State, Client, Clients} from "../../types";
+import {State, Client, ClientsState} from "../../types";
 import Loader from "../ui/Loader";
 
 
 
 export default function Tables({currentClients}:any) {
 
-    const {isLoading}:any=useSelector(function(state:State):Clients{
+    const {isLoading}:any=useSelector(function(state:State):ClientsState{
         return state.clients})
         console.log(isLoading)
 /*const dispatch=useDispatch()

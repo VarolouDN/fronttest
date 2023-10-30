@@ -1,8 +1,8 @@
-import { Client } from '../../types'
+import { ActiveId, Client, IsAuth, State } from '../../types'
 import styles from './Table.module.css'
 import {activeId, updateClient} from "./clientsSlice";
 import {useDispatch, useSelector} from "react-redux";
-import {memo, useState} from "react";
+import {ReactHTMLElement, memo, useState} from "react";
 
 
 
@@ -15,16 +15,16 @@ import {memo, useState} from "react";
    let [typeName,setTypeName]=useState(client.name);
    let [typeEmail,setTypeEmail]=useState(client.email);
   let [typePhone,setTypePhone]=useState(client.phone);
-  const activeId:string | false=useSelector(state=>state.clients.activeId)
-     const isAuth:boolean=useSelector(state=>state.auth.isAuth)
+  const activeId:ActiveId=useSelector((state:State)=>state.clients.activeId)
+     const isAuth:IsAuth=useSelector((state:State)=>state.auth.isAuth)
     console.log(client)
     /* name="Victor",
      email='1234@ukr.net'
      phone='222-222-222-222'*/
-    function handleSubmit(e){
+    function handleSubmit(e:React.FormEvent<HTMLFormElement>){
         e.preventDefault()
        if(!typeName || !typeEmail || !typePhone) return
-        dispatch(updateClient(client._id,typeName,typeEmail,typePhone))
+        dispatch(updateClient(client._id,typeName,typeEmail,typePhone,client.id,client.username))
       setIsActive(false)
       dispatch({type:'clients/activeId',payload:null})
     }
@@ -51,7 +51,7 @@ import {memo, useState} from "react";
                 <div>{client.name}</div>
                 <div>{client.email}</div>
                 <div>{client.phone}</div>
-                {isAuth && <button disabled={activeId && activeId!==client._id} onClick={handleActivate}>Edit data</button>}
+                {isAuth && <button disabled={activeId!==null && activeId!==client._id} onClick={handleActivate}>Edit data</button>}
             </div>
             </div>
         </div>}

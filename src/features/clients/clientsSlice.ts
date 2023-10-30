@@ -1,7 +1,9 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { Client } from "../../types";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { Client, ClientsState, State } from "../../types";
+import { Dispatch } from "redux";
+import { AnyAction } from "@reduxjs/toolkit";
 
-const initialState = {
+const initialState: ClientsState = {
   clients: [],
   isLoading: false,
   activeId: null,
@@ -13,16 +15,16 @@ const clientsSlice = createSlice({
   name: "clients",
   initialState,
   reducers: {
-    getClients(state, action) {
+    getClients(state, action: PayloadAction<Client[]>): any {
       state.clients = action.payload;
     },
     updateClient: {
-      prepare(_id, name, email, phone): Client {
+      prepare(_id, name, email, phone, id, username): { payload: Client } {
         return {
-          payload: { _id, name, email, phone },
+          payload: { _id, name, email, phone, id, username },
         };
       },
-      reducer(state, action): any {
+      reducer(state, action: PayloadAction<Client>): any {
         state.clients = state.clients.map(function (elem: Client) {
           console.log(action.payload);
           if (action.payload._id === elem._id) {
@@ -33,6 +35,7 @@ const clientsSlice = createSlice({
               name: action.payload.name,
               email: action.payload.email,
               phone: action.payload.phone,
+              username: action.payload.username,
             };
           } else {
             //   console.log(elem)
@@ -51,8 +54,8 @@ const clientsSlice = createSlice({
   },
 });
 
-export function getClients() {
-  return function (dispatch: any) {
+export function getClients(): any {
+  return function (dispatch: any): void {
     dispatch({ type: "clients/isLoading", payload: true });
     fetch(`${host}/api/clients`)
       .then((resp) => resp.json())
@@ -72,17 +75,19 @@ export function getClients() {
   };
 }
 export function updateClient(
-  id: string,
+  _id: string,
   name: string,
   email: string,
-  phone: string
-) {
+  phone: string,
+  id: number,
+  username: string
+): any {
   console.log(id, name, email, phone);
-  return function (dispatch: any) {
+  return function (dispatch: Dispatch<AnyAction>) {
     dispatch({ type: "clients/isLoading", payload: true });
-    fetch(`${host}/api/clients/${id}`, {
+    fetch(`${host}/api/clients/${_id}`, {
       method: "put",
-      body: JSON.stringify({ name, email, phone }),
+      body: JSON.stringify({ name, email, phone, id, username }),
       headers: {
         "content-type": "application/json",
       },
