@@ -1,11 +1,6 @@
 {
   "version": 2,
-  "builds": [
-    {
-      "src": "fronttest/package.json",
-      "use": "@vercel/static"
-    }
-  ],
+ 
  
   "rewrites": [
     { "source": "/(.*)", "destination": "/fronttest/index.html" }
