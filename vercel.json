@@ -3,7 +3,7 @@
  
  
   "rewrites": [
-    { "source": "/(.*)", "destination": "/fronttest/index.html" }
+    { "source": "/(.*)", "destination": "fronttest/index.html" }
   ]
 }
 
