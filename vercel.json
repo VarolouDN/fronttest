@@ -1,16 +1,1 @@
-{
-    "rewrites": [
-      {
-        "source": "/table",
-        "destination": "/index.html"
-      },
-      {
-        "source": "/api/(.*)",
-        "destination": "https://backtest-omega.vercel.app/api/:1"
-      },
-      {
-        "source": "/(.*)",
-        "destination": "/index.html"
-      }
-    ]
-  }
+
